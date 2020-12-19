@@ -74,7 +74,7 @@ def detect_anomaly(my_array1#the sample with higer frequency (like 360Hz or 256H
           i=i+1
           k=k+1
           if my_array1[i]>(my_array2[k]+33): #go through both arrays and compare#
-           print (' R Peak Number=%d  Sample Value=%d'%(i, my_array2[k]))
+           print (' R Peak Number=%d  Sample Value=%d (Anomaly)'%(i, my_array2[k]))
 	   peak_result.insert(i, my_array2[k])
 	   i=i-1
 	   NumberOfAnomalies = NumberOfAnomalies+1
@@ -90,7 +90,7 @@ def all_anomalies(peak_256, peak_360):
          
          return ListOfAllAnomalies	  
 	 
-#Returns only R-peaks that contain anomaly	
+#Returns only R-peaks that contain an anomaly	
 def detect_R_peaks_with_anomaly(my_array1#the sample with higer frequency (like 360Hz or 256Hz)#
                   ,my_array2#the sample with 128HZ frequency#
                   ):
@@ -116,10 +116,10 @@ def sort_all_anomalous_R_peaks(AbnormalRpeaks_256 #Anomalous R-peks derived from
                               ,ListOfAllAnomalies
                                ):
   
-         res = AbnormalRpeaks_360 + AbnormalRpeaks_256
-         raz = np.setdiff1d(res,ListOfAllAnomalies)
+         All_Abnormal_Rpeaks = AbnormalRpeaks_360 + AbnormalRpeaks_256
+         List_of_Rpeaks_with_anomaly = np.setdiff1d(All_Abnormal_Rpeaks,ListOfAllAnomalies)
 
-         print(raz)
+         print(List_of_Rpeaks_with_anomaly)
          
  
                      
@@ -141,11 +141,15 @@ if __name__ == '__main__':
 
         print '\n --------- \n 256HZ values \n ---------'
 	peak_256 = detect_anomaly(my_array256,my_array128) #Searching for anomalies by using the 256HZ frequency#
+	print '\n Listed R-peaks and corresponding anomalies'
+	AbnormalRpeaks_256 = detect_R_peaks_with_anomaly(my_array256,my_array128)
+	print(AbnormalRpeaks_256)
 	
 	print '\n --------- \n 360HZ values \n ---------'
 	peak_360 = detect_anomaly(my_array360,my_array128) #Searching for anomalies by using the 360HZ frequency#
-	
-	
+	print '\n Listed R-peaks and corresponding anomalies'
+	AbnormalRpeaks_360 = detect_R_peaks_with_anomaly(my_array360,my_array128)
+	print(AbnormalRpeaks_360)
 	
 	
 	print '\n ----------------------------'
@@ -154,15 +158,13 @@ if __name__ == '__main__':
         print ' Real number of R peaks in the signal = %d'%(Number) 
         
         
-        AbnormalRpeaks_256 = detect_R_peaks_with_anomaly(my_array256,my_array128)
-        AbnormalRpeaks_360 = detect_R_peaks_with_anomaly(my_array360,my_array128)
-        print(AbnormalRpeaks_256)
-        print(AbnormalRpeaks_360)
-	
+        
+        
+	print '\n List of all detected anomalies'
 	AllAnomalies = all_anomalies(peak_256, peak_360)
 	print(AllAnomalies)
 	
-	
+	print '\n List of all R-peaks that contain an anomaly'
 	sort_all_anomalous_R_peaks(AbnormalRpeaks_256, AbnormalRpeaks_360, AllAnomalies)
         
 
