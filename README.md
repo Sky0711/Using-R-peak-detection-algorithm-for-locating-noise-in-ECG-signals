@@ -1,6 +1,10 @@
 Using-R-peak-detection-algorithm-for-locating-noise-in-ECG-signals
 
 
+INFO
+=====
+This is a program used to locate Anomalies/Noise in ECG/EKG signals.
+It prints relevant data in Terminal, and draws a Graph showing the detected Anomalies/Noises 
 
 
 INSTRUCTIONS
@@ -23,6 +27,10 @@ In this case [ecg.csv] is just a sample data in a format convenient to test-run 
 
 **##GRAPH**
 ![](ECG-Graph.png)
+
+
+
+In file [Data] you can find array of ECG signals to work with. (The Data is from MIT-BIH database)
 
 
 **Note:** Python version I used is 2.7.17
