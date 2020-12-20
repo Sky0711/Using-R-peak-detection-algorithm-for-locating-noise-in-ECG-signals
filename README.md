@@ -29,7 +29,7 @@ In this case [ecg.csv] is just a sample data in a format convenient to test-run 
 
 
 
-In file [MIT-BIH] you can find array of ECG signals to work with. Inside there are also "Split" files, where large signals have been cut into tme frames of 80 seconds.
+In file [MIT-BIH] you can find array of ECG signals to work with. Inside there are also "Split" files, where large signals have been cut into the frames of 80 seconds.
 
 
 **Note:** Python version I used is 2.7.17
